@@ -17,6 +17,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private EmployeeRepo employeeRepo;
 
     @PostMapping(path = "/save")
     public String saveEmployee(@RequestBody EmployeeDTO employeeDTO)
@@ -24,4 +26,9 @@ public class EmployeeController {
         String id = employeeService.addEmployee(employeeDTO);
         return id;
     }
+
+    @GetMapping("/get")
+	public List<Employee> fetchEmployees(){
+		return employeeRepo.findAll();
+	}
 }
